@@ -1,9 +1,24 @@
-import React from "react";
+import { GoogleAuthProvider } from "firebase/auth";
+import React, { useContext } from "react";
 import { BiLogInCircle } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
 import "../../styles/login.css";
 
 const Login = () => {
+  const provider=new GoogleAuthProvider();
+  const {user,googleWithSinIn}=useContext(AuthContext);
+  const handleGoogleSignIn=()=>{
+    googleWithSinIn(provider)
+    .then(result=>{
+      const user=result.user;
+      console.log(user);
+    })
+    .catch(error=>console.error(error))
+
+  }
+
+  console.log(user);
   return (
     <div className="login-container">
       <div className="login-title">
@@ -20,7 +35,7 @@ const Login = () => {
         </p>
       </form>
 
-      <button>Google</button>
+      <button onClick={handleGoogleSignIn}>Google</button>
     </div>
   );
 };

@@ -12,6 +12,7 @@ const Signup = () => {
         <input type="password" placeholder="confirm password" />
 
         <button>Sign up</button>
+        
 
       </form>
     </div>
